@@ -21,5 +21,5 @@
 登陆后尽快修改为自己的用户名密码。不登录的情况下直接访问配置页面路由**/configure.html**会被强制重定向
 到登录页面。输入用户名密码，获取到授权token，访问配置路由页面，拼接授权token，即可进入配置管理页面。
 
-        url：ip:port/configure.html?authcode=xxxxxxxxxxxxxxxxxxxxxxxxx
+        url：ip:port/configure.html?authcode=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    
