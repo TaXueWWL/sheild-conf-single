@@ -33,6 +33,7 @@ class ConfigHolder {
     private void init() {
         // 初始化加载一次全量配置
         config = configRepository.getConfigMap();
+        LOGGER.info("sheild-conf初始化全量配置完成");
     }
 
     protected static Map<String, SysConfig> getConfig() {

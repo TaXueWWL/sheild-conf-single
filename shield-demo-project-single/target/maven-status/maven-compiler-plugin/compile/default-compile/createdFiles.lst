@@ -1,2 +1,2 @@
-com\sheild\conf\test\App$MyTomcatConnectorCustomizer.class
-com\sheild\conf\test\App.class
+com\conf\test\App.class
+com\conf\test\App$MyTomcatConnectorCustomizer.class

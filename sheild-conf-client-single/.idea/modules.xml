@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/sheild-conf-client-single.iml" filepath="$PROJECT_DIR$/sheild-conf-client-single.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../shield-demo-project-single/shield-demo-project-single.iml" filepath="$PROJECT_DIR$/../shield-demo-project-single/shield-demo-project-single.iml" />
-    </modules>
-  </component>
-</project>
