@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Shield-conf-single-admin</title>
+    <link rel="stylesheet" type="text/css" href="css/configure/bootstrap-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/configure/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/configure/common.css"/>
+    <style type="text/css">
+        /*选择大按钮*/
+        .btn-group-lg > .btn, .btn-lg {
+            padding: 10px 16px;
+            font-size: 18px;
+            line-height: 2.333333;
+            width: 58%;
+            border-radius: 7px;
+        }
+
+        /*主要内容表格*/
+        .main-table {
+            margin-left: 2%;
+            margin-left: 2%;
+            width: 95%;
+        }
+
+        .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+<!--
+    时间：2017-03-13
+    描述：标题栏
+-->
+<div class="site-header" id="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand header-brand" href="/">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a th:href="'#'"><b>shield-conf后台配置</b><span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="banner-divider"></li>
+                    <li>
+                        <a href="#"><span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="banner-divider"></li>
+                    <li>
+                        <a href="#"><font color="red"></font></a>
+                    </li>
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#addNewConfig"><b>新增</b><span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</div>
+
+<br/><br/><br/><br/><br/>
+
+<div class="col-md-12 col-lg-12 col-xs-12 main-table">
+    <div class="table-responsive">
+        <form action="/api/config/update-config.action" method="post">
+            <table class="table table-bordered">
+                <tr>
+                    <td colspan="2">
+                        <center>
+                            <h4>配&nbsp;&nbsp;置&nbsp;&nbsp;修&nbsp;&nbsp;改</h4>
+                        </center>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="alert-info">
+                        <div><center>配置键key</center></div>
+                    </td>
+                    <td class="alert-info">
+                        <div><input type="text" class="form-control" id="configKey" name="configKey" th:value="${sysConfig.configKey}" disabled="disabled"/></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div><center>配置值</center></div>
+                    </td>
+                    <td>
+                        <div><input type="text" class="form-control" id="configValue" name="configValue" th:value="${sysConfig.configValue}" required="required" /></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="alert-info">
+                        <div><center>配置描述</center></div>
+                    </td>
+                    <td class="alert-info">
+                        <div><input type="text" class="form-control" id="configDesc" name="configDesc" placeholder="配置描述" th:value="${sysConfig.configDesc}" required="required"/></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div><center>操作者</center></div>
+                    </td>
+                    <td>
+                        <div><input type="text" class="form-control" id="optUser" name="optUser" th:value="${sysConfig.optUser}" required="required" /></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="alert-info">
+                        <div><center>项目名称</center></div>
+                    </td>
+                    <td class="alert-info">
+                        <div><input type="text" class="form-control" id="project-name" name="project-name" th:value="${sysConfig.projectName}" required="required" /></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div><center>入库时间</center></div>
+                    </td>
+                    <td>
+                        <div><input type="text" class="form-control" id="insertTime" name="insertTime" th:value="${sysConfig.insertTime}" disabled="disabled" /></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" class="alert-info">
+                        <center>
+                            <input type="submit" class="btn btn-primary" value="提交" />
+                            <input type="reset" class="btn btn-warning" value="重置" />
+                        </center>
+                    </td>
+                </tr>
+                <input type="hidden" class="form-control" name="configId" th:value="${sysConfig.configId}"/>
+            </table>
+        </form>
+    </div>
+    <br/><br/><br/><br/>
+</div>
+<!--
+    时间：2017-05-23
+    描述：返回头部
+-->
+<div class="w-top">
+    <a href="#header"><i class="w-top-glyphicon glyphicon glyphicon-chevron-up"></i></a>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <footer>
+        <h4 class="footer-words">
+            <center>高阳捷迅©版权所有 2017</center>
+        </h4>
+    </footer>
+</nav>
+<script src="js/configure/jquery-1.12.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/configure/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/configure/eggs.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

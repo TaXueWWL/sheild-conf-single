@@ -1,0 +1,40 @@
+/*标题栏*/
+.navbar-brand {
+	float: left;
+	height: 50px;
+	padding: 0px 15px;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+/*底部版权*/
+.footer-words {
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+/*菜单栏分隔符*/
+.banner-divider {
+	margin: 5px;
+}
+
+/*返回头部按钮*/
+.w-top {
+    position: fixed;
+    right: 30px;
+    bottom: 60px;
+    z-index: 79;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    font-size: 20px;
+    background-position: 0 -934px;
+}
+.w-top-glyphicon {
+	font-size: 50px;
+}
+
+/*复制到剪贴板按钮*/
+.copy-to-board {
+	float: right;
+}
