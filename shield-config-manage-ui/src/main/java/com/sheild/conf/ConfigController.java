@@ -31,7 +31,7 @@ public class ConfigController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConfigController.class);
 
     @Autowired
-    ConfigRepository configRepository;
+    ConfigUiRepository configRepository;
     /**
      * 设置刷新频率及线程池大小
      * @param request

@@ -12,11 +12,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sheild.conf</groupId>
-    <artifactId>sheild-conf-client-single</artifactId>
-    <version>1.0.0</version>
+    <artifactId>sheild-conf-client-core</artifactId>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
-    <name>sheild-conf-client-single</name>
+    <name>sheild-conf-client-core</name>
 
     <properties>
         <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
@@ -139,6 +139,6 @@
     </dependencies>
 
     <build>
-        <finalName>sheild-conf-client-single-${version}</finalName>
+        <finalName>sheild-conf-client-core-${version}</finalName>
     </build>
 </project>

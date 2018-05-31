@@ -25,7 +25,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @desc 获取配置持久化类
  */
 @Repository
-class ConfigRepository {
+class ConfigUiRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConfigRepository.class);
 
@@ -33,42 +33,12 @@ class ConfigRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    protected Map<String, SysConfig> getConfigMap() {
-        String sql = SQL.SQL_GET_ALL_CONFIGS;
-        LOGGER.debug("开始获取全量配置信息");
-        final List<SysConfig> sysConfigs = new CopyOnWriteArrayList<>();
-        jdbcTemplate.query(sql, new RowCallbackHandler() {
-            @Override
-            public void processRow(ResultSet rs) throws SQLException {
-                SysConfig sysConfig = new SysConfig();
-                sysConfig.setConfigId(rs.getInt("configId"))
-                        .setConfigKey(rs.getString("configKey"))
-                        .setConfigValue(rs.getString("configValue"))
-                        .setConfigDesc(rs.getString("configDesc"))
-                        .setOptUser(rs.getString("optUser"))
-                        .setInsertTime(rs.getString("insertTime"))
-                        .setUpdateTime(rs.getString("updateTime"));
-                sysConfigs.add(sysConfig);
-            }
-        });
-        // 迭代设置Map，生成MD5
-        Map<String, SysConfig> sysConfigMap = new ConcurrentHashMap<>();
-        for (SysConfig sysConfig : sysConfigs) {
-            String md5Source = sysConfig.getProjectName() + sysConfig.getConfigKey()
-                    + sysConfig.getConfigValue();
-            sysConfig.setMd5Value(DigestUtils.md5Hex(md5Source));
-            sysConfigMap.put(sysConfig.getConfigKey(), sysConfig);
-        }
-        LOGGER.debug("获取全量配置信息--{}", sysConfigs.toString());
-        return sysConfigMap;
-    }
-
     /**
      * 获取当前应用所有配置项
      * @return
      */
     protected List<SysConfig> getAllConfigs() {
-        String sql = SQL.SQL_FETCH_ALL_CONFIGS;
+        String sql = SQL4UI.SQL_FETCH_ALL_CONFIGS;
         final List<SysConfig> sysConfigs = new CopyOnWriteArrayList<>();
         jdbcTemplate.query(sql, new RowCallbackHandler() {
             @Override
@@ -95,7 +65,7 @@ class ConfigRepository {
      * @return
      */
     protected boolean addOneSysConfig(SysConfig sysConfig) {
-        String sql = SQL.INSERT_NEW_SYSCONFIG;
+        String sql = SQL4UI.INSERT_NEW_SYSCONFIG;
         int count = jdbcTemplate.update(sql, new Object[]{
                 sysConfig.getConfigKey(),
                 sysConfig.getConfigValue(),
@@ -115,7 +85,7 @@ class ConfigRepository {
      * @return
      */
     protected boolean enableConfig(int configId) {
-        String sql = SQL.ENABLE_CONFIG;
+        String sql = SQL4UI.ENABLE_CONFIG;
         int count = jdbcTemplate.update(sql, new Object[]{configId});
         if (count == 1) {
             return true;
@@ -129,7 +99,7 @@ class ConfigRepository {
      * @return
      */
     protected boolean disableConfig(int configId) {
-        String sql = SQL.DISABLE_CONFIG;
+        String sql = SQL4UI.DISABLE_CONFIG;
         int count = jdbcTemplate.update(sql, new Object[]{configId});
         if (count == 1) {
             return true;
@@ -143,7 +113,7 @@ class ConfigRepository {
      * @return
      */
     protected boolean insertUserAuthEntity(AuthUserinfoInitializer.UserAuthEntity userAuthEntity) {
-        String sql = SQL.INSERT_NEW_USER_AUTH_JSON_STR;
+        String sql = SQL4UI.INSERT_NEW_USER_AUTH_JSON_STR;
         int count = jdbcTemplate.update(sql, new Object[]{JSON.toJSONString(userAuthEntity)});
         if (count == 1) {
             return true;
@@ -157,7 +127,7 @@ class ConfigRepository {
      * @return
      */
     protected AuthUserinfoInitializer.UserAuthEntity querySheildConfUserAuthEntity() {
-        String sql = SQL.QUERY_USER_AUTH_INFO;
+        String sql = SQL4UI.QUERY_USER_AUTH_INFO;
         final StringBuffer authJson = new StringBuffer();
         jdbcTemplate.query(sql, new RowCallbackHandler() {
             @Override
@@ -178,7 +148,7 @@ class ConfigRepository {
      * @return
      */
     protected boolean updateSysConfig(SysConfig sysConfig) {
-        String sql = SQL.UPDATE_CONFIG;
+        String sql = SQL4UI.UPDATE_CONFIG;
         if (StringUtils.isEmpty(sysConfig.getOptUser())) {
             sysConfig.setOptUser("administrator");
         }
@@ -205,7 +175,7 @@ class ConfigRepository {
      * @return
      */
     protected SysConfig getConfigById(String configId) {
-        String sql = SQL.SQL_GET_CONFIG_BY_ID;
+        String sql = SQL4UI.SQL_GET_CONFIG_BY_ID;
         final SysConfig config = new SysConfig();
         jdbcTemplate.query(sql, new Object[]{configId}, new RowCallbackHandler() {
             @Override

@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>sheild-conf-client-single</module>
+        <module>sheild-conf-client-core</module>
         <module>shield-demo-project-single</module>
         <module>shield-config-manage-ui</module>
     </modules>

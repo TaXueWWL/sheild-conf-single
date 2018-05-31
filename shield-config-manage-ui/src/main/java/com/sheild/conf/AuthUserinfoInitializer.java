@@ -19,7 +19,7 @@ public class AuthUserinfoInitializer {
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthUserinfoInitializer.class);
 
     @Autowired
-    ConfigRepository configRepository;
+    ConfigUiRepository configRepository;
 
     @PostConstruct
     private void init() {

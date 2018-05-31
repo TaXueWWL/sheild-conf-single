@@ -4,7 +4,10 @@
 
 [分布式集群版本](https://github.com/TaXueWWL/shield-conf)
 
-		
+[更新记录](./CHANGE-LOG.md)	
+
+<h4>1.0.0版本已经不推荐使用，请使用1.1.0及以上版本</h4>
+
 1. 建立数据库并导入deploy/sql中的SysConfig.sql脚本建立配置表
 2. 构建项目sheild-conf-client-single，执行下方命令
 
@@ -13,9 +16,9 @@
 4. 参考shield-demo-project-single进行开发。在pom中添加下方依赖
 
                 <dependency>
-                        <artifactId>shield-config-client-single</artifactId>
+                        <artifactId>shield-config-client-core</artifactId>
                         <groupId>com.hispeed.development</groupId>
-                        <version>1.0.0</version>
+                        <version>1.1.0</version>
                 </dependency>
 
 5. 对于springboot项目在启动类添加注解 @ComponentScan(basePackages = {"com.sheild"})，如下
@@ -38,4 +41,12 @@
 到登录页面。输入用户名密码，获取到授权token，访问配置路由页面，拼接授权token，即可进入配置管理页面。
 
         url：ip:port/configure.html?authcode=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+9. 拆分管理界面为单独的模块，更方便管理，对于不需要该功能的用户而言更灵活。使用方法，在pom.xml中添加
+   
+                   <dependency>
+                           <groupId>com.sheild.conf</groupId>
+                           <artifactId>shield-config-manage-ui</artifactId>
+                           <version>1.0.0</version>
+                   </dependency>
+                  
    
